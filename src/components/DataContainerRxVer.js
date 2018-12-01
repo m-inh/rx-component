@@ -2,4 +2,7 @@ import React, {Component} from 'react';
 import withRxLoader from "./withRxLoader";
 import DataPresenter from "./DataPresenter";
 
-export default withRxLoader(DataPresenter);
+// build request
+const request = CustomerApi.buildRequest();
+
+export default withRxLoader(request)(DataPresenter);

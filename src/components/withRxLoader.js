@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import propTypes from 'prop-types';
 import ApiFetcher from "../ApiFetcher";
 
-export default (WrappedComponent) => {
+export default (request) => (WrappedComponent) => {
     class RxComponent extends Component {
         currentRequest = null;
         state = {
@@ -12,16 +12,19 @@ export default (WrappedComponent) => {
         componentWillReceiveProps(nextProps) {
             this.currentRequest = nextProps.request;
 
-            ApiFetcher(nextProps.request)
-                .then(data => {
-                    if (data.id === this.currentRequest) {
-                        this.setState({data});
+            // todo: write more ...
+            ApiFetcher.fetch(nextProps.request)
+                .then(responseData => {
+                    if (request === this.currentRequest) {
+                        this.setState({responseData});
                     }
                 })
         }
 
         render() {
-            return <WrappedComponent {...this.props} data={this.state.data}/>
+            const {request, props} = this.props;
+            // data -> key we can define out of this component
+            return <WrappedComponent {...props} data={this.state.data}/>
         }
     }
 

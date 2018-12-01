@@ -23,7 +23,7 @@ export default (request) => (WrappedComponent) => {
 
         render() {
             const {request, props} = this.props;
-            // data -> key we can define out of this component
+            // todo: data -> key we can define out of this component
             return <WrappedComponent {...props} data={this.state.data}/>
         }
     }

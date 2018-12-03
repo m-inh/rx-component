@@ -3,7 +3,7 @@ import IDComposer from "./IDComposer";
 import DataContainer from "./DataContainer";
 import RequestsPresenter from "./RequestsPresenter";
 import IDPresenter from "./IDPresenter";
-import DataContainerRxVer from "./DataContainerRxVer";
+import ObserverDataContainer from "./ObserverDataContainer";
 
 class App extends Component {
     state = {
@@ -29,13 +29,13 @@ class App extends Component {
                 </div>
 
                 <div>
-                    <h2>Not use Rx</h2>
+                    <h2>Not use Observable</h2>
                     <DataContainer id={id}/><br/>
                 </div>
 
                 <div>
-                    <h2>Use Rx</h2>
-                    <DataContainerRxVer request={id}/><br/>
+                    <h2>Use Observable</h2>
+                    <ObserverDataContainer id={id}/><br/>
                 </div>
             </div>
         );

@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
 import propTypes from 'prop-types';
 import {fetchData} from '../apis/IdApi';
+import {ObservableFetcher} from "../ObservableFetcher";
+const observableFetcher = ObservableFetcher();
 
-class DataContainer extends Component {
+class ObserverDataContainer extends Component {
     state = {
         data: {}
     };
 
     componentWillReceiveProps(nextProps) {
         const {id} = nextProps;
-        fetchData(id)
+        observableFetcher.fetch(fetchData, [id])
             .then(data => {
                 this.setState({data});
             })
@@ -26,8 +28,8 @@ class DataContainer extends Component {
     }
 }
 
-DataContainer.propTypes = {
+ObserverDataContainer.propTypes = {
     id: propTypes.number
 };
 
-export default DataContainer;
+export default ObserverDataContainer;
